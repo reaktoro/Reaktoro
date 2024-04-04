@@ -174,10 +174,33 @@ auto Elements::elements() -> Vec<Element> const&
     return instance().m_elements;
 }
 
+auto Elements::clear() -> void
+{
+    auto& elements = instance().m_elements;
+    elements.clear();
+}
+
+auto Elements::reset() -> void
+{
+    auto& elements = instance().m_elements;
+    elements = detail::default_elements;
+}
+
 auto Elements::append(Element element) -> void
 {
     auto& elements = instance().m_elements;
     elements.emplace_back(std::move(element));
+}
+
+auto Elements::replace(String const& existingSymbol, Element const& replacement) -> bool
+{
+    auto& elements = instance().m_elements;
+    auto it = std::find_if(elements.begin(), elements.end(),
+        [&](auto&& e) { return e.symbol() == existingSymbol; });
+    if(it == elements.end())
+        return false;
+    *it = std::move(replacement);
+    return true;
 }
 
 auto Elements::size() -> std::size_t

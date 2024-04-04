@@ -165,3 +165,16 @@ def testElements():
     assert len(elements_with_tags) == 2
     assert elements_with_tags[0].symbol() == "Aa"
     assert elements_with_tags[1].symbol() == "Bb"
+
+    Elements.replace("Na", Element().withSymbol("New"))
+
+    assert Elements.withSymbol("Na") == None
+    assert Elements.withSymbol("New").symbol() == "New"
+
+    Elements.clear()
+
+    assert Elements.size() == 0
+
+    Elements.reset()
+
+    assert Elements.withSymbol("Na") != None

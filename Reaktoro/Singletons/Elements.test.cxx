@@ -168,4 +168,18 @@ TEST_CASE("Testing Elements", "[Elements]")
     REQUIRE(elements_with_tags.size() == 2);
     REQUIRE(elements_with_tags[0].symbol() == "Aa");
     REQUIRE(elements_with_tags[1].symbol() == "Bb");
+
+    Elements::replace("Na", Element().withSymbol("New"));
+
+    REQUIRE(Elements::withSymbol("Na").has_value() == false);
+    REQUIRE(Elements::withSymbol("New").has_value());
+    REQUIRE(Elements::withSymbol("New").value().symbol() == "New");
+
+    Elements::clear();
+
+    REQUIRE(Elements::size() == 0);
+
+    Elements::reset();
+
+    REQUIRE(Elements::withSymbol("Na"));
 }

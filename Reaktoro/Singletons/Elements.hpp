@@ -39,17 +39,26 @@ public:
     /// Return the single Elements object.
     static auto instance() -> Elements&;
 
-    /// Return the elements in the periodic table.
+    /// Return the elements in the collection of elements.
     static auto data() -> Vec<Element> const&;
 
-    /// Return the elements in the periodic table.
+    /// Return the elements in the collection of elements.
     [[deprecated("Use Elements::data() instead.")]]
     static auto elements() -> Vec<Element> const&;
 
-    /// Append a custom element to the periodic table.
+    /// Clear the elements in the collection of elements.
+    static auto clear() -> void;
+
+    /// Reset the elements in the collection of elements to its default state.
+    static auto reset() -> void;
+
+    /// Append a custom element to the collection of elements.
     static auto append(Element element) -> void;
 
-    /// Return the number of elements in the periodic table.
+    /// Replace an existing element in the collection of elements with another. If given existing element is not present in the collection, this method returns false.
+    static auto replace(String const& existingSymbol, Element const& replacement) -> bool;
+
+    /// Return the number of elements in the collection of elements.
     static auto size() -> std::size_t;
 
     /// Return the element with given symbol.
@@ -77,7 +86,7 @@ public:
     auto end() { return data().end(); }
 
 private:
-    /// The elements stored in the periodic table.
+    /// The elements stored in the collection of elements.
     Vec<Element> m_elements;
 
 private:
