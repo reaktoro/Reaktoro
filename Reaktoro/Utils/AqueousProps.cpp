@@ -32,6 +32,7 @@ using namespace tabulate;
 #include <Reaktoro/Common/Constants.hpp>
 #include <Reaktoro/Common/Enumerate.hpp>
 #include <Reaktoro/Common/Exception.hpp>
+#include <Reaktoro/Common/Warnings.hpp>
 #include <Reaktoro/Core/ChemicalProps.hpp>
 #include <Reaktoro/Core/ChemicalState.hpp>
 #include <Reaktoro/Core/ChemicalSystem.hpp>
@@ -40,6 +41,7 @@ using namespace tabulate;
 #include <Reaktoro/Core/SpeciesList.hpp>
 #include <Reaktoro/Core/Utils.hpp>
 #include <Reaktoro/Models/ActivityModels/Support/AqueousMixture.hpp>
+#include <Reaktoro/Water/WaterUtils.hpp>
 
 namespace Reaktoro {
 namespace {
@@ -428,8 +430,25 @@ struct AqueousProps::Impl
 
         // Convert to eq/L
         auto const m3_to_liter = 1000.0;
-        auto const V = aqprops.volume();  // in m3
-        auto const V_in_liter = V * m3_to_liter;
+        auto V = aqprops.volume();  // in m3
+        auto V_in_liter = V * m3_to_liter;
+
+        if(V <= 0.0)
+        {
+            warningif(V <= 0.0 && Warnings::isEnabled(548),
+                "The chosen thermodynamic model for the aqueous phase produced volume ", V_in_liter, " L, which is not physical. "
+                "As an approximation, alkalinity will be computed using density of pure water provided by Wagner & Pruss (2002) model as the density of the solution. "
+                "Was the Extended UNIQUAC the chosen model? It currently does not compute densities for lack of standard molar volumes of the species. "
+                "Disable this warning message with Warnings.disable(345) in Python and Warnings::disable(345) in C++.");
+
+            auto const T = temperature();
+            auto const P = pressure();
+            auto const mass = props.phaseProps(iphase).mass(); // aqueous solution mass in kg
+            auto const rho = waterDensityWagnerPruss(T, P, StateOfMatter::Liquid); // density in kg/m3
+            V = mass / rho;
+            V_in_liter = V * m3_to_liter;
+        }
+
         alkalinity /= V_in_liter;
 
         return alkalinity;
