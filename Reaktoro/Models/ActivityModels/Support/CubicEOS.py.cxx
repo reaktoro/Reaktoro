@@ -52,7 +52,15 @@ void exportCubicEOS(py::module& m)
         .def_readwrite("som", &CubicEOS::Props::som, "The state of matter of the fluid phase")
         ;
 
+    auto createBipFromSize = [](Index size)
+    {
+        auto zero = MatrixXr::Zero(size, size);
+        return CubicEOS::Bip{zero, zero, zero};
+    };
+
     py::class_<CubicEOS::Bip>(ceos, "Bip")
+        .def(py::init<>())
+        .def(py::init(createBipFromSize))
         .def(py::init<MatrixXr, MatrixXr, MatrixXr>())
         .def_readwrite("k", &CubicEOS::Bip::k, "The computed binary interaction parameters kij for the species in the fluid phase.")
         .def_readwrite("kT", &CubicEOS::Bip::kT, "The computed first-order temperature derivative of the binary interaction parameters kij.")
