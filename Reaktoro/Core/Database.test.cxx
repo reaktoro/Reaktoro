@@ -18,6 +18,9 @@
 // Catch includes
 #include <catch2/catch.hpp>
 
+// C++ includes
+#include <fstream>
+
 // Reaktoro includes
 #include <Reaktoro/Core/Database.hpp>
 using namespace Reaktoro;
@@ -206,7 +209,7 @@ TEST_CASE("Testing Database class", "[Database]")
     REQUIRE( std::any_cast<String>(db.attachedData()) == "SomeData" );
 
     //-------------------------------------------------------------------------
-    // TESTING METHOD: Database::extends
+    // TESTING METHOD: Database::extend/extendWithDatabase
     //-------------------------------------------------------------------------
     Database dbx;
 
@@ -231,6 +234,48 @@ TEST_CASE("Testing Database class", "[Database]")
     CHECK_NOTHROW( db.species().index("Fe+3(aq)") );
     CHECK_NOTHROW( db.species().index("Mg(s)") );
     CHECK_NOTHROW( db.species().index("Al(s)") );
+
+    //-------------------------------------------------------------------------
+    // TESTING METHOD: Database::extendWithFile
+    //-------------------------------------------------------------------------
+    std::ofstream file("temporary.yaml");
+
+    String contents = R"#(
+        Species:
+          Calcite:
+            Name: Calcite
+            Formula: CaCO3
+            Elements: 1:Ca 1:C 3:O
+            AggregateState: Solid
+            StandardThermoModel:
+              HollandPowell:
+                Gf: -1129600.0
+                Hf: -1207880.0
+                Sr: 92.5
+                Vr: 3.689e-05
+                a: 140.9
+                b: 0.005029
+                c: -950700.0
+                d: -858.4
+                alpha0: 2.52e-05
+                kappa0: 73300000000.0
+                kappa0p: 4.06
+                kappa0pp: -5.5e-11
+                numatoms: 5.0
+                Tcr: 1240.0
+                Smax: 10.0
+                Vmax: 4.0e-07
+                Tmax: 9999.0
+        )#";
+
+    file << contents;
+    file.close();
+
+    db.extendWithFile("temporary.yaml");
+
+    CHECK_NOTHROW( db.species().index("Calcite") );
+
+    std::remove("temporary.yaml");
 
     //-------------------------------------------------------------------------
     // TESTING METHOD: Database::clear

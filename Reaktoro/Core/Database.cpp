@@ -30,6 +30,43 @@
 
 namespace Reaktoro {
 
+template<typename Source>
+auto createDatabaseFromContents(Source& contents)
+{
+    Data doc;
+
+    try { doc = Data::parseYaml(contents); }
+    catch(...)
+    {
+        try { doc = Data::parseJson(contents); }
+        catch(...)
+        {
+            errorif(true, "Could not parse given text in Database::fromContents as it does not seem to be either YAML or JSON formats.");
+        }
+    }
+
+    DatabaseParser dbparser(doc);
+    return Database(dbparser);
+}
+
+auto createDataFromJsonOrYaml(String const& path) -> Data
+{
+    std::ifstream file(path);
+    errorif(!file.is_open(),
+        "Could not open file `", path, "`. Ensure the given file path "
+        "is relative to the directory where your application is RUNNING "
+        "(not necessarily where the executable is located!). Alternatively, "
+        "try a full path to the file (e.g., "
+        "in Windows, `C:\\User\\username\\mydata\\mydatabase.yaml`, "
+        "in Linux and macOS, `/home/username/mydata/mydatabase.yaml`). "
+        "File formats accepted are JSON and YAML and expected file extensions are .json, .yaml, or .yml.");
+    auto isJson = endswith(path, ".json");
+    auto isYaml = endswith(path, ".yaml") || endswith(path, ".yml");
+    errorifnot(isJson || isYaml, "The file `", path, "` must be a JSON or YAML file terminating with .json, .yaml, or .yml.");
+    auto doc = isJson ? Data::parseJson(file) : Data::parseYaml(file);
+    return doc;
+}
+
 struct Database::Impl
 {
     /// The Species objects in the database.
@@ -185,6 +222,11 @@ auto Database::attachData(Any const& data) -> void
 
 auto Database::extend(Database const& other) -> void
 {
+    extendWithDatabase(other);
+}
+
+auto Database::extendWithDatabase(Database const& other) -> void
+{
     for(auto const& element : other.elements())
         addElement(element);
 
@@ -193,6 +235,16 @@ auto Database::extend(Database const& other) -> void
 
     // TODO: Replace Any by Map<String, Any> so that it becomes easier/more intuitive to unify different attached data to Database objects.
     // pimpl->attached_data = ???;
+}
+
+auto Database::extendWithFile(String const& path) -> void
+{
+    // Prvide current element objects in this database which can be reused to
+    // create the Species objects in the extended database.
+    auto doc = createDataFromJsonOrYaml(path);
+    DatabaseParser dbparser(doc, pimpl->elements);
+    Database dbx(dbparser);
+    extendWithDatabase(dbx);
 }
 
 auto Database::elements() const -> ElementList const&
@@ -235,19 +287,7 @@ auto Database::attachedData() const -> Any const&
 
 auto Database::fromFile(String const& path) -> Database
 {
-    std::ifstream file(path);
-    errorif(!file.is_open(),
-        "Could not open file `", path, "`. Ensure the given file path "
-        "is relative to the directory where your application is RUNNING "
-        "(not necessarily where the executable is located!). Alternatively, "
-        "try a full path to the file (e.g., "
-        "in Windows, `C:\\User\\username\\mydata\\mydatabase.yaml`, "
-        "in Linux and macOS, `/home/username/mydata/mydatabase.yaml`). "
-        "File formats accepted are JSON and YAML and expected file extensions are .json, .yaml, or .yml.");
-    auto isJson = endswith(path, ".json");
-    auto isYaml = endswith(path, ".yaml") || endswith(path, ".yml");
-    errorifnot(isJson || isYaml, "The file `", path, "` must be a JSON or YAML file terminating with .json, .yaml, or .yml.");
-    auto doc = isJson ? Data::parseJson(file) : Data::parseYaml(file);
+    auto doc = createDataFromJsonOrYaml(path);
     DatabaseParser dbparser(doc);
     return Database(dbparser);
 }
@@ -256,25 +296,6 @@ auto Database::fromEmbeddedFile(String const& path) -> Database
 {
     const String contents = Embedded::get("databases/reaktoro/" + path);
     return fromContents(contents);
-}
-
-template<typename Source>
-auto createDatabaseFromContents(Source& contents)
-{
-    Data doc;
-
-    try { doc = Data::parseYaml(contents); }
-    catch(...)
-    {
-        try { doc = Data::parseJson(contents); }
-        catch(...)
-        {
-            errorif(true, "Could not parse given text in Database::fromContents as it does not seem to be either YAML or JSON formats.");
-        }
-    }
-
-    DatabaseParser dbparser(doc);
-    return Database(dbparser);
 }
 
 auto Database::fromContents(String const& contents) -> Database

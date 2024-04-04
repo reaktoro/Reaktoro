@@ -95,6 +95,14 @@ public:
     /// Extend this database with elements, species and other contents from another database.
     auto extend(Database const& other) -> void;
 
+    /// Extend this database with elements, species and other contents from another database.
+    auto extendWithDatabase(Database const& other) -> void;
+
+    /// Extend this database with elements, species and other contents from another database.
+    /// @warning An exception is thrown if `path` does not point to a valid local database file.
+    /// @param path The path, including file name, to the local database file.
+    auto extendWithFile(String const& path) -> void;
+
     /// Return all elements in the database.
     auto elements() const -> ElementList const&;
 

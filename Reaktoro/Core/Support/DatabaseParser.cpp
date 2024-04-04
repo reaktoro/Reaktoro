@@ -44,7 +44,12 @@ struct DatabaseParser::Impl
 
     /// Construct a DatabaseParser::Impl object with given Data object.
     Impl(const Data& doc)
-    : doc(doc)
+    : Impl(doc, {})
+    {}
+
+    /// Construct a DatabaseParser::Impl object with given Data object.
+    Impl(const Data& doc, const ElementList& elements)
+    : doc(doc), element_list(elements)
     {
         errorif(!doc.isDict(), "Could not understand your YAML or JSON database file with content:\n", doc.repr(), "\n",
             "Repeating the error message here in case the above printed content is too long.\n",
@@ -266,6 +271,10 @@ DatabaseParser::DatabaseParser(const DatabaseParser& other)
 
 DatabaseParser::DatabaseParser(Data const& doc)
 : pimpl(new Impl(doc))
+{}
+
+DatabaseParser::DatabaseParser(Data const& doc, const ElementList& elements)
+: pimpl(new Impl(doc, elements))
 {}
 
 DatabaseParser::~DatabaseParser()

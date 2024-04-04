@@ -40,6 +40,10 @@ public:
     /// Construct a DatabaseParser object with given Data object.
     explicit DatabaseParser(const Data& node);
 
+    /// Construct a DatabaseParser object with given Data and Element objects.
+    /// Use this if there are Element objects that should be reused to create the Species objects.
+    explicit DatabaseParser(const Data& node, const ElementList& elements);
+
     /// Destroy this DatabaseParser object.
     ~DatabaseParser();
 
