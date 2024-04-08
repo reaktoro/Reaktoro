@@ -64,12 +64,12 @@ jobs:
           conda install mamba
           mamba install conda-devenv
           conda devenv -e mamba
-          mamba list
 
       - name: Building, Testing & Installing Reaktoro
         shell: cmd
         run: |
           call conda activate reaktoro || goto :eof
+          call conda list || goto :eof
           ccache -s || goto :eof
           ccache -z || goto :eof
           mkdir .build && cd .build || goto :eof
