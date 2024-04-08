@@ -23,8 +23,8 @@ jobs:
       fail-fast: true
       max-parallel: 4
       matrix:
-        os: ["windows-2019"]
-        python-version: [3.9]
+        os: ["windows-2022"]
+        python-version: [3.11]
         config: ["Release"]
 
     steps:
