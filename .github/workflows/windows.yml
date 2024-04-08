@@ -61,8 +61,10 @@ jobs:
         env:
           PYTHON_VERSION: ${{ matrix.python-version }}
         run: |
-          conda install conda-devenv
-          conda devenv
+          conda install mamba
+          mamba install conda-devenv
+          conda devenv -e mamba
+          mamba list
 
       - name: Building, Testing & Installing Reaktoro
         shell: cmd
