@@ -48,4 +48,7 @@ PYBIND11_MAKE_OPAQUE(Reaktoro::ArrayXrConstRef);
 PYBIND11_MAKE_OPAQUE(Reaktoro::VectorXr);
 PYBIND11_MAKE_OPAQUE(Reaktoro::VectorXrRef);
 PYBIND11_MAKE_OPAQUE(Reaktoro::VectorXrConstRef);
+PYBIND11_MAKE_OPAQUE(Reaktoro::MatrixXr);
+PYBIND11_MAKE_OPAQUE(Reaktoro::MatrixXrRef);
+PYBIND11_MAKE_OPAQUE(Reaktoro::MatrixXrConstRef);
 PYBIND11_MAKE_OPAQUE(Reaktoro::Indices);

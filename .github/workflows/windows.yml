@@ -23,8 +23,8 @@ jobs:
       fail-fast: true
       max-parallel: 4
       matrix:
-        os: ["windows-2019"]
-        python-version: [3.9]
+        os: ["windows-2022"]
+        python-version: [3.11]
         config: ["Release"]
 
     steps:
@@ -61,13 +61,15 @@ jobs:
         env:
           PYTHON_VERSION: ${{ matrix.python-version }}
         run: |
-          conda install conda-devenv
-          conda devenv
+          conda install mamba
+          mamba install conda-devenv
+          conda devenv -e mamba
 
       - name: Building, Testing & Installing Reaktoro
         shell: cmd
         run: |
           call conda activate reaktoro || goto :eof
+          call conda list || goto :eof
           ccache -s || goto :eof
           ccache -z || goto :eof
           mkdir .build && cd .build || goto :eof
