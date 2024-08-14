@@ -24,6 +24,8 @@
 #include <Reaktoro/Water/WaterConstants.hpp>
 using namespace Reaktoro;
 
+namespace {
+
 /// Return mole fractions for the species.
 inline auto moleFractions(const SpeciesList& species) -> ArrayXr
 {
@@ -55,6 +57,8 @@ inline auto checkActivities(ArrayXrConstRef x, ActivityPropsConstRef props)
         CHECK( exp(props.ln_a[i] - props.ln_g[i]) == Approx(c[i]) );
     }
 }
+
+} // anonymous namespace
 
 TEST_CASE("Testing ActivityModelDrummond", "[ActivityModelDrummond]")
 {

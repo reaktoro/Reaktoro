@@ -25,6 +25,8 @@ using namespace Reaktoro;
 
 #define PRINT_INFO_IF_FAILS(x) INFO(#x " = \n" << std::scientific << std::setprecision(16) << x)
 
+namespace {
+
 /// Return mole fractions for the species.
 inline auto moleFractions(const SpeciesList& species) -> ArrayXr
 {
@@ -57,6 +59,8 @@ inline auto checkActivities(ArrayXrConstRef x, ActivityPropsConstRef props)
         CHECK( exp(props.ln_a[i] - props.ln_g[i]) == Approx(c[i]) );
     }
 }
+
+} // anonymous namespace
 
 TEST_CASE("Testing ActivityModelDavies", "[ActivityModelDavies]")
 {

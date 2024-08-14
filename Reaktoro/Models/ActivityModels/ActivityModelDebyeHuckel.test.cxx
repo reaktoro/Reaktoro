@@ -227,6 +227,8 @@ TEST_CASE("Testing ActivityModelDebyeHuckelParams", "[ActivityModelDebyeHuckel]"
     REQUIRE( params.bneutrals.empty()      );
 }
 
+namespace {
+
 /// Return mole fractions for the species.
 inline auto moleFractions(const SpeciesList& species) -> ArrayXr
 {
@@ -258,6 +260,8 @@ inline auto checkActivities(ArrayXrConstRef x, ActivityPropsConstRef props)
         CHECK( exp(props.ln_a[i] - props.ln_g[i]) == Approx(c[i]) );
     }
 }
+
+} // anonymous namespace
 
 TEST_CASE("Testing ActivityModelDebyeHuckel", "[ActivityModelDebyeHuckel]")
 {

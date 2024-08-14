@@ -22,6 +22,8 @@
 #include <Reaktoro/Models/ActivityModels/ActivityModelCubicEOS.hpp>
 using namespace Reaktoro;
 
+namespace {
+
 // Check if the activities of the fluid species are correct assuming activity coefficients are.
 inline auto checkActivities(ArrayXrConstRef x, real P, ActivityPropsConstRef props)
 {
@@ -36,6 +38,8 @@ inline auto checkActivities(ArrayXrConstRef x, real P, ActivityPropsConstRef pro
         CHECK( exp(props.ln_a[i] - props.ln_g[i]) == Approx(c[i]) );
     }
 }
+
+} // anonymous namespace
 
 TEST_CASE("Testing ActivityModelCubicEOS", "[ActivityModelCubicEOS]")
 {
