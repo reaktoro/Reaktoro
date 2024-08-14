@@ -37,6 +37,7 @@ inline auto moleFractions(const SpeciesList& species) -> ArrayXr
     n[idx("OH-")] = 1e-7;
     n[idx("Na+")] = 0.3;
     n[idx("Cl-")] = 0.3;
+    n[idx("CO2")] = 0.9;
 
     return n / n.sum();
 }
@@ -78,7 +79,7 @@ TEST_CASE("Testing ActivityModelDavies", "[ActivityModelDavies]")
         // Evaluate the activity props function
         fn(props, {T, P, x});
 
-        CHECK( double(exp(props.ln_g[0]))  == Approx(0.935522783525151) ); // H2O
+        CHECK( double(exp(props.ln_g[0]))  == Approx(0.935122413217240) ); // H2O
         CHECK( double(exp(props.ln_g[1]))  == Approx(0.800165626605902) ); // H+
         CHECK( double(exp(props.ln_g[2]))  == Approx(0.800165626605902) ); // OH-
         CHECK( double(exp(props.ln_g[3]))  == Approx(0.800165626605902) ); // Na+
@@ -110,7 +111,7 @@ TEST_CASE("Testing ActivityModelDavies", "[ActivityModelDavies]")
         // Evaluate the activity props function
         fn(props, {T, P, x});
 
-        CHECK( double(exp(props.ln_g[0]))  == Approx(0.923522951483393) ); // H2O
+        CHECK( double(exp(props.ln_g[0]))  == Approx(0.923127724612841) ); // H2O
         CHECK( double(exp(props.ln_g[1]))  == Approx(0.707914308149729) ); // H+
         CHECK( double(exp(props.ln_g[2]))  == Approx(0.707914308149729) ); // OH-
         CHECK( double(exp(props.ln_g[3]))  == Approx(0.707914308149729) ); // Na+
