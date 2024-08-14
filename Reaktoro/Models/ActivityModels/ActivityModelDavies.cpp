@@ -101,7 +101,9 @@ auto activityModelDavies(const SpeciesList& species, ActivityModelDaviesParams p
         const auto bneutrals = params.bneutrals;
         const auto sigmac = -A*(sqrtI/(1 + sqrtI) - bions*I) * ln10;
         const auto sigman = bneutrals*I * ln10;
-        const auto Gammac = 2*A*(I - 2*sqrtI + 2*log(1 + sqrtI) - 0.5*bions*I2) * ln10;
+
+        // The common integral term Γᵢ for all charged species
+        const auto Gammac = -2*A*(I - 2*sqrtI + 2*log(1 + sqrtI) - 0.5*bions*I2) * ln10;
 
         // Initialize ln activity of water to zero and collect contributions to it below from charged and neutral solutes
         ln_a[iwater] = 0.0;
@@ -122,7 +124,7 @@ auto activityModelDavies(const SpeciesList& species, ActivityModelDaviesParams p
             ln_a[ispecies] = ln_g[ispecies] + ln_m[ispecies];
 
             // Calculate the contribution of current charged species to the ln activity of water
-            ln_a[iwater] -= Mw * (m[ispecies] + m[ispecies]*ln_g[ispecies] + Gammac);
+            ln_a[iwater] -= Mw * (m[ispecies] + m[ispecies]*ln_g[ispecies] - Gammac);
         }
 
         // Loop over all neutral species in the aqueous mixture
@@ -131,6 +133,9 @@ auto activityModelDavies(const SpeciesList& species, ActivityModelDaviesParams p
             // The index of the current neutral species
             const auto ispecies = ineutral_species[i];
 
+            // The integral term Γᵢ for the neutral species
+            const auto Gammai = m[ispecies] * sigman;
+
             // Calculate the ln activity coefficient of the current neutral species
             ln_g[ispecies] = sigman;
 
@@ -138,7 +143,7 @@ auto activityModelDavies(const SpeciesList& species, ActivityModelDaviesParams p
             ln_a[ispecies] = ln_g[ispecies] + ln_m[ispecies];
 
             // Calculate the contribution of current neutral species to the ln activity of water
-            ln_a[iwater] -= Mw * m[ispecies];
+            ln_a[iwater] -= Mw * (m[ispecies] + m[ispecies]*ln_g[ispecies] - Gammai);
         }
 
         // Set the activity coefficient of water (mole fraction scale)
