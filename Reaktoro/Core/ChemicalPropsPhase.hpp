@@ -411,13 +411,22 @@ public:
     {
         return (mdata.x * mdata.G0).sum() + mdata.Gx;
     }
-
+    /// Return the corrective molar Gibbs energy of formation of the phase (in J/mol).
+    auto correctiveMolarGibbsEnergy() const -> real
+    {
+        return mdata.Gx;
+    }
+      
     /// Return the molar enthalpy of formation of the phase (in J/mol).
     auto molarEnthalpy() const -> real
     {
         return (mdata.x * mdata.H0).sum() + mdata.Hx;
     }
-
+    /// Return the corrective molar molar enthalpy of formation of the phase (in J/mol).
+    auto correctiveMolarEnthalpy() const -> real
+    {
+        return mdata.Hx;
+    }
     /// Return the molar entropy of formation of the phase (in J/(mol·K)).
     auto molarEntropy() const -> real
     {
@@ -447,6 +456,12 @@ public:
     {
         return (mdata.x * mdata.Cp0).sum() + mdata.Cpx;
     }
+    /// Return the corrective molar isobaric heat capacity of the phase (in J/(mol·K)).
+    auto correctiveMolarHeatCapacityConstP() const -> real
+    {
+        return mdata.Cpx;
+    }
+
 
     /// Return the molar isochoric heat capacity of the phase (in J/(mol·K)).
     auto molarHeatCapacityConstV() const -> real

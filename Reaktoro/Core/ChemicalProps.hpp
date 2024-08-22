@@ -239,6 +239,10 @@ public:
     /// @param species The name or index of the species in the system.
     auto speciesStandardVolumeP(StringOrIndex species) const -> real;
 
+    /// Return he derivatives of the corrective molar volume of each phase in the system with respect to species mole fractions at constant temperature and pressure (in m³/mol).
+    /// @param species The name or index of the species in the system.
+    auto speciesCorrectiveMolarVolumeI(StringOrIndex species) const -> real;
+
     /// Return the standard partial molar Gibbs energy of formation of a species in the system (in J/mol).
     /// @param species The name or index of the species in the system.
     auto speciesStandardGibbsEnergy(StringOrIndex species) const -> real;
