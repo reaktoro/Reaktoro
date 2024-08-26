@@ -23,18 +23,16 @@ from math import *
 
 @pytest.fixture
 def database() -> Database:
-    return Database(
-        [
-            Species("H2O(g)").withStandardGibbsEnergy(0.0),
-            Species("CO2(g)").withStandardGibbsEnergy(0.0),
-        ]
-    )
+    return Database([
+        Species("H2O(g)").withStandardGibbsEnergy(0.0),
+        Species("CO2(g)").withStandardGibbsEnergy(0.0),
+    ])
 
 
 def testChemicalProps(database: Database) -> None:
 
     phases = Phases(database)
-    phases.add(GaseousPhase("H2O(g) CO2(g)"))
+    phases.add( GaseousPhase("H2O(g) CO2(g)") )
 
     system = ChemicalSystem(phases)
     state = ChemicalState(system)
@@ -61,7 +59,7 @@ def testChemicalProps(database: Database) -> None:
 def testChemicalPropsPengRobinsonPartialMolarVolumes(database: Database) -> None:
 
     phases = Phases(database)
-    phases.add(GaseousPhase("H2O(g) CO2(g)").set(ActivityModelPengRobinson()))
+    phases.add( GaseousPhase("H2O(g) CO2(g)").set(ActivityModelPengRobinson()) )
 
     system = ChemicalSystem(phases)
     state = ChemicalState(system)
@@ -78,6 +76,4 @@ def testChemicalPropsPengRobinsonPartialMolarVolumes(database: Database) -> None
     assert props.speciesAmounts() == [0.3, 0.7]
 
     assert props.speciesMoleFractions() == [0.3, 0.7]
-    assert props.speciesPartialMolarVolumes().asarray() == pytest.approx(
-        [0.0220046, 0.0222578]
-    )
+    assert props.speciesPartialMolarVolumes().asarray() == pytest.approx([0.0220046, 0.0222578])

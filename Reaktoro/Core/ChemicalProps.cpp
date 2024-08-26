@@ -453,7 +453,7 @@ auto ChemicalProps::speciesStandardVolumeP(StringOrIndex species) const -> real
     return VP0[ispecies];
 }
 
-auto ChemicalProps::speciesCorrectiveMolarVolumeI(StringOrIndex species) const -> real
+auto ChemicalProps::speciesCorrectiveMolarVolume(StringOrIndex species) const -> real
 {
     const auto ispecies = detail::resolveSpeciesIndexOrRaiseError(msystem, species);
     return Vxi[ispecies];
@@ -543,7 +543,6 @@ auto ChemicalProps::speciesPartialMolarVolumes() const -> ArrayXr
 {
     return V0 + Vxi;
 }
-
 
 auto ChemicalProps::speciesStandardVolumes() const -> ArrayXrConstRef
 {
