@@ -1,0 +1,1373 @@
+# Extended UNIQUAC parameters provided by Prof. Kaj Thomsen in 2023.
+
+# Note: This database is identical to ExtendedUNIQUAC.v2023.yaml, with the exception
+# of solid species names. For all solid species that were previously named using
+# their chemical formulas, "(s)" has been appended to the names for clarity. For
+# example, "NaOH" is now "NaOH(s)".
+
+Species:
+- Name: H2O
+  Formula: H2O
+  Elements: 2:H 1:O
+  Charge: 0.0
+  AggregateState: Aqueous
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -237.129
+      Hr: -285.83
+      Cp: 75.32331
+      a: 58.36952
+      b: 3.90E-02
+      c: 523.8794
+      alpha: 0
+      beta: 0
+- Name: CO2
+  Formula: CO2
+  Elements: 1:C 2:O
+  Charge: 0.0
+  AggregateState: Aqueous
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -385.98
+      Hr: -413.8
+      Cp: 243
+      a: 243
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: HCO3-
+  Formula: HCO3-
+  Elements: 1:H 1:C 3:O
+  Charge: -1.0
+  AggregateState: Aqueous
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -586.77
+      Hr: -691.99
+      Cp: -21.856837
+      a: -0.6770971
+      b: 0.2737451
+      c: -10089.51
+      alpha: 0
+      beta: 0
+- Name: CO3-2
+  Formula: CO3-2
+  Elements: 1:C 3:O
+  Charge: -2.0
+  AggregateState: Aqueous
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -527.81
+      Hr: -677.14
+      Cp: -163.73381
+      a: 894.6877
+      b: -2.827237
+      c: -21149.44
+      alpha: 0
+      beta: 0
+- Name: Na+
+  Formula: Na+
+  Elements: 1:Na
+  Charge: 1.0
+  AggregateState: Aqueous
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -261.905
+      Hr: -240.12
+      Cp: 35.766937
+      a: 600.6158
+      b: -1.100623
+      c: -23231.92
+      alpha: 0
+      beta: 0
+- Name: Mg+2
+  Formula: Mg+2
+  Elements: 1:Mg
+  Charge: 2.0
+  AggregateState: Aqueous
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -454.8
+      Hr: -466.85
+      Cp: -18.635063
+      a: -646.9708
+      b: 1.331126
+      c: 22717.85
+      alpha: 0
+      beta: 0
+- Name: Ca+2
+  Formula: Ca+2
+  Elements: 1:Ca
+  Charge: 2.0
+  AggregateState: Aqueous
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -553.58
+      Hr: -542.83
+      Cp: -32.808867
+      a: -403.2824
+      b: 0.8858481
+      c: 10439.03
+      alpha: 0
+      beta: 0
+- Name: Ba+2
+  Formula: Ba+2
+  Elements: 1:Ba
+  Charge: 2.0
+  AggregateState: Aqueous
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -560.77
+      Hr: -537.64
+      Cp: 0.6954
+      a: 0.6954
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Sr+2
+  Formula: Sr+2
+  Elements: 1:Sr
+  Charge: 2.0
+  AggregateState: Aqueous
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -559.48
+      Hr: -545.8
+      Cp: -96.005525
+      a: -1124.756
+      b: 3.450446
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: H+
+  Formula: H+
+  Elements: 1:H
+  Charge: 1.0
+  AggregateState: Aqueous
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: 0
+      Hr: 0
+      Cp: 0
+      a: 0
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Cl-
+  Formula: Cl-
+  Elements: 1:Cl
+  Charge: -1.0
+  AggregateState: Aqueous
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -131.228
+      Hr: -167.159
+      Cp: -126.16621
+      a: 400.3516
+      b: -1.131228
+      c: -18574.12
+      alpha: 0
+      beta: 0
+- Name: HSO4-
+  Formula: HSO4-
+  Elements: 1:H 1:S 4:O
+  Charge: -1.0
+  AggregateState: Aqueous
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -755.91
+      Hr: -887.34
+      Cp: -4.1313464
+      a: 647.2966
+      b: -1.585654
+      c: -17535.99
+      alpha: 0
+      beta: 0
+- Name: SO4-2
+  Formula: SO4-2
+  Elements: 1:S 4:O
+  Charge: -2.0
+  AggregateState: Aqueous
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -744.53
+      Hr: -909.27
+      Cp: -267.75526
+      a: 643.2988
+      b: -1.760458
+      c: -37902.93
+      alpha: 0
+      beta: 0
+- Name: OH-
+  Formula: OH-
+  Elements: 1:O 1:H
+  Charge: -1.0
+  AggregateState: Aqueous
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -157.2481
+      Hr: -230.2433
+      Cp: -133.63234
+      a: 1418.157
+      b: -3.445769
+      c: -51473.13
+      alpha: 0
+      beta: 0
+- Name: NaHCO3(s)
+  Formula: NaHCO3
+  Elements: 1:Na 1:H 1:C 3:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -851
+      Hr: -950.81
+      Cp: 87.61
+      a: 87.61
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Na2CO3(s)
+  Formula: Na2CO3
+  Elements: 2:Na 1:C 3:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1044.44
+      Hr: -1130.68
+      Cp: 112.3
+      a: 112.3
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Na2CO3*H2O(s)
+  Formula: Na2CO3*H2O
+  Elements: 2:Na 1:C 4:O 2:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1285.31
+      Hr: -1431.26
+      Cp: 145.6
+      a: 145.6
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Na2CO3*7H2O(s)
+  Formula: Na2CO3*7H2O
+  Elements: 2:Na 1:C 10:O 14:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -2714.2
+      Hr: -3199.97
+      Cp: 300
+      a: 300
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Na2CO3*10H2O(s)
+  Formula: Na2CO3*10H2O
+  Elements: 2:Na 1:C 13:O 20:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -3427.66
+      Hr: -4081.32
+      Cp: 550.32
+      a: 550.32
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Na2CO3*3NaHCO3(s)
+  Formula: Na2CO3*3NaHCO3
+  Elements: 5:Na 4:C 12:O 3:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -3599.729
+      Hr: -3982.7
+      Cp: 781.5798
+      a: 781.5798
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Na2CO3*NaHCO3*2H2O(s)
+  Formula: Na2CO3*NaHCO3*2H2O
+  Elements: 3:Na 2:C 8:O 5:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -2379.848
+      Hr: -2684.9
+      Cp: 349.7375
+      a: 349.7375
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Na2CO3*2Na2SO4(s)
+  Formula: Na2CO3*2Na2SO4
+  Elements: 6:Na 1:C 11:O 2:S
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -3593.003
+      Hr: -3909.003
+      Cp: 615.9504
+      a: 615.9504
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Halite
+  Formula: NaCl
+  Elements: 1:Na 1:Cl
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -384.1258
+      Hr: -411.9584
+      Cp: 45.13074
+      a: 45.13074
+      b: 0
+      c: 0
+      alpha: 9.93E-05
+      beta: -1.36E-08
+- Name: NaCl*2H2O(s)
+  Formula: NaCl*2H2O
+  Elements: 1:Na 1:Cl 4:H 2:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -858.9559
+      Hr: -992.4543
+      Cp: 230.0595
+      a: 230.0595
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: NaOH(s)
+  Formula: NaOH
+  Elements: 1:Na 1:O 1:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -379.494
+      Hr: -425.609
+      Cp: 59.54
+      a: 59.54
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: NaHSO4(s)
+  Formula: NaHSO4
+  Elements: 1:Na 1:H 1:S 4:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -992.8
+      Hr: -1125.5
+      Cp: 217.6479
+      a: 217.6479
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: NaHSO4*H2O(s)
+  Formula: NaHSO4*H2O
+  Elements: 1:Na 3:H 1:S 5:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -992.8
+      Hr: -1125.5
+      Cp: 217.6479
+      a: 217.6479
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Na2SO4*NaHSO4(s)
+  Formula: Na2SO4*NaHSO4
+  Elements: 3:Na 2:S 8:O 1:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: 2279.5
+      Hr: 0
+      Cp: 0
+      a: 0
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Na2SO4*NaHSO4*H2O(s)
+  Formula: Na2SO4*NaHSO4*H2O
+  Elements: 3:Na 2:S 9:O 3:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: 2279.5
+      Hr: 0
+      Cp: 0
+      a: 0
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Thenardite
+  Formula: Na2SO4
+  Elements: 2:Na 1:S 4:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1270.16
+      Hr: -1387.08
+      Cp: 128.2
+      a: 128.2
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Na2SO4*10H2O(s)
+  Formula: Na2SO4*10H2O
+  Elements: 2:Na 1:S 14:O 20:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -3646.85
+      Hr: -4327.26
+      Cp: 492.1598
+      a: 492.1598
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: 3Na2SO4*MgSO4(s)
+  Formula: 3Na2SO4*MgSO4
+  Elements: 6:Na 4:S 16:O 1:Mg
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -5012.137
+      Hr: -5460.819
+      Cp: 457.8474
+      a: 457.8474
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: 2Na2SO4*2MgSO4*5H2O(s)
+  Formula: 2Na2SO4*2MgSO4*5H2O
+  Elements: 4:Na 4:S 21:O 2:Mg 10:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -6136.308
+      Hr: -6845.451
+      Cp: 258.3
+      a: 258.3
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Na2SO4*MgSO4*4H2O(s)
+  Formula: Na2SO4*MgSO4*4H2O
+  Elements: 2:Na 2:S 12:O 1:Mg 8:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -3429.718
+      Hr: -3889.37
+      Cp: 244.2063
+      a: 244.2063
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Glauberite
+  Formula: Na2SO4*CaSO4
+  Elements: 2:Na 2:S 8:O 1:Ca
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -2594.808
+      Hr: -2816.396
+      Cp: 228
+      a: 228
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Mg(HCO3)2(s)
+  Formula: Mg(HCO3)2
+  Elements: 1:Mg 2:H 2:C 6:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1599.61
+      Hr: -1759.61
+      Cp: 320.5216
+      a: 320.5216
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Magnesite
+  Formula: MgCO3
+  Elements: 1:Mg 1:C 3:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1012.1
+      Hr: -1095.8
+      Cp: 75.52
+      a: 75.52
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Nesquehonite
+  Formula: MgCO3*3H2O
+  Elements: 1:Mg 1:C 6:O 6:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1723.487
+      Hr: -1953.29
+      Cp: 301.4968
+      a: 301.4968
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: MgCl2(s)
+  Formula: MgCl2
+  Elements: 1:Mg 2:Cl
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -591.79
+      Hr: -641.32
+      Cp: 71.38
+      a: 71.38
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: MgCl2*4H2O(s)
+  Formula: MgCl2*4H2O
+  Elements: 1:Mg 2:Cl 8:H 4:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1638.035
+      Hr: -1927.249
+      Cp: 241.42
+      a: 241.42
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: MgCl2*6H2O(s)
+  Formula: MgCl2*6H2O
+  Elements: 1:Mg 2:Cl 12:H 6:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -2118.193
+      Hr: -2498.72
+      Cp: 391.1687
+      a: 391.1687
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: MgCl2*8H2O(s)
+  Formula: MgCl2*8H2O
+  Elements: 1:Mg 2:Cl 16:H 8:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -2594.835
+      Hr: -3088.661
+      Cp: 391
+      a: 391
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: MgCl2*12H2O(s)
+  Formula: MgCl2*12H2O
+  Elements: 1:Mg 2:Cl 24:H 12:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -3546.544
+      Hr: -4260.992
+      Cp: 551
+      a: 551
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: 2MgCl2*CaCl2*12H2O(s)
+  Formula: 2MgCl2*CaCl2*12H2O
+  Elements: 2:Mg 6:Cl 1:Ca 24:H 12:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -5013.242
+      Hr: -5826.948
+      Cp: 821.2729
+      a: 821.2729
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: MgCl2*2CaCl2*6H2O(s)
+  Formula: MgCl2*2CaCl2*6H2O
+  Elements: 1:Mg 6:Cl 2:Ca 12:H 6:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -3711.62
+      Hr: -4702.021
+      Cp: 749.7458
+      a: 749.7458
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Brucite
+  Formula: Mg(OH)2
+  Elements: 1:Mg 2:O 2:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -833.51
+      Hr: -921.1407
+      Cp: 77.03
+      a: 77.03
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: MgSO4(s)
+  Formula: MgSO4
+  Elements: 1:Mg 1:S 4:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1170.6
+      Hr: -1284.9
+      Cp: 96.48
+      a: 96.48
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: MgSO4*H2O(s)
+  Formula: MgSO4*H2O
+  Elements: 1:Mg 1:S 5:O 2:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1435.807
+      Hr: -1605.802
+      Cp: 98.09155
+      a: 98.09155
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: MgSO4*4H2O(s)
+  Formula: MgSO4*4H2O
+  Elements: 1:Mg 1:S 8:O 8:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -2153.675
+      Hr: -2507.719
+      Cp: 256
+      a: 256
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: MgSO4*5H2O(s)
+  Formula: MgSO4*5H2O
+  Elements: 1:Mg 1:S 9:O 10:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -2392.457
+      Hr: -2800.825
+      Cp: 308
+      a: 308
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: MgSO4*6H2O(s)
+  Formula: MgSO4*6H2O
+  Elements: 1:Mg 1:S 10:O 12:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -2631.095
+      Hr: -3086.819
+      Cp: 421.245
+      a: 421.245
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: MgSO4*7H2O(s)
+  Formula: MgSO4*7H2O
+  Elements: 1:Mg 1:S 11:O 14:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -2869.395
+      Hr: -3382.106
+      Cp: 247.497
+      a: 247.497
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: MgSO4*12H2O(s)
+  Formula: MgSO4*12H2O
+  Elements: 1:Mg 1:S 16:O 24:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -4054.763
+      Hr: -4823.043
+      Cp: 576
+      a: 576
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Ca(HCO3)2(s)
+  Formula: Ca(HCO3)2
+  Elements: 1:Ca 2:H 2:C 6:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1727.12
+      Hr: -1926.81
+      Cp: 87.61
+      a: 87.61
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Calcite
+  Formula: CaCO3
+  Elements: 1:Ca 1:C 3:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1129.057
+      Hr: -1208.726
+      Cp: 81.88
+      a: 81.88
+      b: 0
+      c: 0
+      alpha: 2.24E-03
+      beta: 0
+- Name: Dolomite
+  Formula: CaCO3*MgCO3
+  Elements: 1:Ca 2:C 6:O 1:Mg
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -2140.89
+      Hr: -2302.72
+      Cp: 157.4
+      a: 157.4
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Hydrophilite
+  Formula: CaCl2
+  Elements: 1:Ca 2:Cl
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -748.1
+      Hr: -795.8
+      Cp: 72.59
+      a: 72.59
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Sinjarite
+  Formula: CaCl2*2H2O
+  Elements: 1:Ca 2:Cl 4:H 2:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1253.87
+      Hr: -1402.9
+      Cp: 153
+      a: 153
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: CaCl2*4H2O(s)
+  Formula: CaCl2*4H2O
+  Elements: 1:Ca 2:Cl 8:H 4:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1738.434
+      Hr: -2014.119
+      Cp: 233
+      a: 233
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Antarcticite
+  Formula: CaCl2*6H2O
+  Elements: 1:Ca 2:Cl 12:H 6:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -2219.378
+      Hr: -2607.658
+      Cp: 313
+      a: 313
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: CaCl2*3Ca(OH)2*13H2O(s)
+  Formula: CaCl2*3Ca(OH)2*13H2O
+  Elements: 4:Ca 2:Cl 19:O 32:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -6588.025
+      Hr: -7657.423
+      Cp: 855
+      a: 855
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: CaCl2*Ca(OH)2*H2O(s)
+  Formula: CaCl2*Ca(OH)2*H2O
+  Elements: 2:Ca 2:Cl 3:O 4:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1929.512
+      Hr: -2119.236
+      Cp: 200
+      a: 200
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Ca(OH)2(s)
+  Formula: Ca(OH)2
+  Elements: 1:Ca 2:O 2:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -896.9257
+      Hr: -986.09
+      Cp: 87.49
+      a: 87.49
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Anhydrite
+  Formula: CaSO4
+  Elements: 1:Ca 1:S 4:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1321.8
+      Hr: -1436.132
+      Cp: 99.66
+      a: 99.66
+      b: 0
+      c: 0
+      alpha: 2.33E-03
+      beta: -8.42E-07
+- Name: Gypsum
+  Formula: CaSO4*2H2O
+  Elements: 1:Ca 1:S 6:O 4:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1797.407
+      Hr: -2026.294
+      Cp: 186.02
+      a: 186.02
+      b: 0
+      c: 0
+      alpha: 1.08E-03
+      beta: 3.08E-07
+- Name: Ba(HCO3)2(s)
+  Formula: Ba(HCO3)2
+  Elements: 1:Ba 2:H 2:C 6:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: 200
+      Hr: -1800
+      Cp: 100
+      a: 100
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Witherite
+  Formula: BaCO3
+  Elements: 1:Ba 1:C 3:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1137.6
+      Hr: -1216.3
+      Cp: 85.35
+      a: 85.35
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: BaCl2(s)
+  Formula: BaCl2
+  Elements: 1:Ba 2:Cl
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -810.4
+      Hr: -858.6
+      Cp: 75.14
+      a: 75.14
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: BaCl2*H2O(s)
+  Formula: BaCl2*H2O
+  Elements: 1:Ba 2:Cl 2:H 1:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1055.669
+      Hr: -1160.79
+      Cp: 120
+      a: 120
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: BaCl2*2H2O(s)
+  Formula: BaCl2*2H2O
+  Elements: 1:Ba 2:Cl 4:H 2:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1296.32
+      Hr: -1460.13
+      Cp: 161.96
+      a: 161.96
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Ba(OH)2(s)
+  Formula: Ba(OH)2
+  Elements: 1:Ba 2:O 2:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -859.54
+      Hr: -946.2953
+      Cp: 108.6
+      a: 108.6
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Ba(OH)2*H2O(s)
+  Formula: Ba(OH)2*H2O
+  Elements: 1:Ba 3:O 4:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -85.954
+      Hr: -946.2953
+      Cp: 108.6
+      a: 108.6
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Ba(OH)2*3H2O(s)
+  Formula: Ba(OH)2*3H2O
+  Elements: 1:Ba 5:O 8:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -85.954
+      Hr: -946.2953
+      Cp: 108.6
+      a: 108.6
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Ba(OH)2*8H2O(s)
+  Formula: Ba(OH)2*8H2O
+  Elements: 1:Ba 10:O 18:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -279.28
+      Hr: -3342.2
+      Cp: 39.4
+      a: 39.4
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Barite
+  Formula: BaSO4
+  Elements: 1:Ba 1:S 4:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1361.866
+      Hr: -1467.929
+      Cp: 104.0038
+      a: 104.0038
+      b: 0
+      c: 0
+      alpha: 1.64E-03
+      beta: 3.34E-07
+- Name: Sr(HCO3)2(s)
+  Formula: Sr(HCO3)2
+  Elements: 1:Sr 2:H 2:C 6:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -200
+      Hr: -2000
+      Cp: 100
+      a: 100
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Strontianite
+  Formula: SrCO3
+  Elements: 1:Sr 1:C 3:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1139.745
+      Hr: -1227.633
+      Cp: 81.42
+      a: 81.42
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: SrCl2(s)
+  Formula: SrCl2
+  Elements: 1:Sr 2:Cl
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -781.1
+      Hr: -828.9
+      Cp: 75.6
+      a: 75.6
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: SrCl2*H2O(s)
+  Formula: SrCl2*H2O
+  Elements: 1:Sr 2:Cl 2:H 1:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1036.3
+      Hr: -1136.8
+      Cp: 120.1
+      a: 120.1
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: SrCl2*2H2O(s)
+  Formula: SrCl2*2H2O
+  Elements: 1:Sr 2:Cl 4:H 2:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1284.587
+      Hr: -1456.694
+      Cp: 160.2
+      a: 160.2
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: SrCl2*6H2O(s)
+  Formula: SrCl2*6H2O
+  Elements: 1:Sr 2:Cl 12:H 6:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -2240.92
+      Hr: -2623.8
+      Cp: 320
+      a: 320
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: SrCl2*CaCl2*12H2O(s)
+  Formula: SrCl2*CaCl2*12H2O
+  Elements: 1:Sr 4:Cl 1:Ca 24:H 12:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -2.24092
+      Hr: -2623.8
+      Cp: 0
+      a: 0
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Sr(OH)2(s)
+  Formula: Sr(OH)2
+  Elements: 1:Sr 2:O 2:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -939.95
+      Hr: -968.89
+      Cp: 93.19
+      a: 93.19
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Sr(OH)2*H2O(s)
+  Formula: Sr(OH)2*H2O
+  Elements: 1:Sr 3:O 4:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1123.331
+      Hr: -1297.151
+      Cp: 120
+      a: 120
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Sr(OH)2*8H2O(s)
+  Formula: Sr(OH)2*8H2O
+  Elements: 1:Sr 10:O 18:H
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -279.2068
+      Hr: -3339.474
+      Cp: 413
+      a: 413
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Celestine
+  Formula: SrSO4
+  Elements: 1:Sr 1:S 4:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -1341.538
+      Hr: -1452.955
+      Cp: 100
+      a: 100
+      b: 0
+      c: 0
+      alpha: 1.04E-03
+      beta: 7.15E-07
+- Name: CO2(g)
+  Formula: CO2
+  Elements: 1:C 2:O
+  Charge: 0.0
+  AggregateState: Gas
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -394.359
+      Hr: -393.509
+      Cp: 37.11
+      a: 37.11
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: H2SO4(s)
+  Formula: H2SO4
+  Elements: 2:H 1:S 4:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -690.003
+      Hr: -813.989
+      Cp: 138.91
+      a: 138.91
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: HCl(g)
+  Formula: HCl
+  Elements: 1:H 1:Cl
+  Charge: 0.0
+  AggregateState: Gas
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -95.299
+      Hr: -92.307
+      Cp: 29.12
+      a: 29.12
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: H2O(g)
+  Formula: H2O
+  Elements: 2:H 1:O
+  Charge: 0.0
+  AggregateState: Gas
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -228.572
+      Hr: -241.818
+      Cp: 33.577
+      a: 33.577
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0
+- Name: Ice
+  Formula: H2O
+  Elements: 2:H 1:O
+  Charge: 0.0
+  AggregateState: Solid
+  StandardThermoModel:
+    ExtendedUNIQUAC:
+      Gr: -236.5376
+      Hr: -292.6244
+      Cp: 47.89955
+      a: 47.89955
+      b: 0
+      c: 0
+      alpha: 0
+      beta: 0

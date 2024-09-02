@@ -133,8 +133,8 @@ Vec<ArrayXd> outputs =
 
 TEST_CASE("Testing ActivityModelExtendedUNIQUAC", "[ActivityModelExtendedUNIQUAC]")
 {
-    auto const db = Database::embedded("ExtendedUNIQUAC.v2023.yaml");
-    auto const params = Params::embedded("ExtendedUNIQUAC.v2023.yaml");
+    auto const db = Database::embedded("ExtendedUNIQUAC.v2024.yaml");
+    auto const params = Params::embedded("ExtendedUNIQUAC.v2024.yaml");
 
     auto const species = SpeciesList("H2O CO2 HCO3- CO3-2 Na+ Ba+2 H+ Cl- HSO4- SO4-2 OH-");
 

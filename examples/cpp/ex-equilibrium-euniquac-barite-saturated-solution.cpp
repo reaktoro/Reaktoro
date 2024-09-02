@@ -27,8 +27,8 @@ using namespace Reaktoro;
 
 int main()
 {
-    const auto db = Database::embedded("ExtendedUNIQUAC.v2023.yaml");
-    const auto params = Params::embedded("ExtendedUNIQUAC.v2023.yaml");
+    const auto db = Database::embedded("ExtendedUNIQUAC.v2024.yaml");
+    const auto params = Params::embedded("ExtendedUNIQUAC.v2024.yaml");
 
     AqueousPhase solution(speciate("H O Na Ba Cl C S"));
     solution.setActivityModel(ActivityModelExtendedUNIQUAC(params));

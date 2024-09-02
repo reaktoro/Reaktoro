@@ -248,7 +248,7 @@ auto createActivityModelExtendedUNIQUAC(SpeciesList const& species, ActivityMode
 
 auto ActivityModelExtendedUNIQUAC() -> ActivityModelGenerator
 {
-    return ActivityModelExtendedUNIQUAC(Params::embedded("ExtendedUNIQUAC.v2023.yaml"));
+    return ActivityModelExtendedUNIQUAC(Params::embedded("ExtendedUNIQUAC.v2024.yaml"));
 }
 
 auto ActivityModelExtendedUNIQUAC(ActivityModelParamsExtendedUNIQUAC const& params) -> ActivityModelGenerator

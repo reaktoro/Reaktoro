@@ -25,8 +25,8 @@
 
 from reaktoro import *
 
-db = Database.embedded("ExtendedUNIQUAC.v2023.yaml")
-params = Params.embedded("ExtendedUNIQUAC.v2023.yaml")
+db = Database.embedded("ExtendedUNIQUAC.v2024.yaml")
+params = Params.embedded("ExtendedUNIQUAC.v2024.yaml")
 
 solution = AqueousPhase(speciate("H O Na Ba Cl C S"))
 solution.setActivityModel(ActivityModelExtendedUNIQUAC(params))
