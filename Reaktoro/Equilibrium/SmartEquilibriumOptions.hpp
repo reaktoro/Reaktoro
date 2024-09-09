@@ -39,6 +39,9 @@ struct SmartEquilibriumOptions
     /// their respective positive lower bounds.
     double reltol_negative_amounts = -1.0e-14;
 
+    /// The relative tolerance used for the amount of species in the conservation of mass constraint.
+    double reltol_component_amount_conservation = 1.0e-10;
+
     /// The relative tolerance used in the acceptance test for the predicted chemical equilibrium state.
     double reltol = 0.005;
 

@@ -92,7 +92,7 @@ struct SmartEquilibriumSolver::Impl
     auto solve(ChemicalState& state, EquilibriumConditions const& conditions) -> SmartEquilibriumResult
     {
         tic(SOLVE_STEP)
-                 
+
         // Save a backup state in case the smart prediction fails.
         const auto statebkp = state;
 
@@ -218,7 +218,6 @@ struct SmartEquilibriumSolver::Impl
         }
 
         result.timing.learning_storage = toc(STORAGE_STEP);
-        
     }
 
     /// Perform a prediction operation in which a chemical equilibrium state is predicted using a first-order Taylor approximation.
@@ -357,6 +356,15 @@ struct SmartEquilibriumSolver::Impl
 
                     if(nmin <= options.reltol_negative_amounts * nsum)
                         continue; // continue searching for a another record that produces positive amounts only or tolerable negative values
+
+                    // Check if projected species amounts conserve mass of chemical elements and charge within tolerance limits
+                    const auto bnew = state.componentAmounts();
+                    const auto bold = c.head(bnew.size());
+                    const double bsum = bold.sum();
+                    const double bdiffmax = (bnew - bold).cwiseAbs().maxCoeff();
+
+                    if(bdiffmax > options.reltol_component_amount_conservation * bsum)
+                        continue; // continue searching for a another record that produces mass conservation within tolerance limits
 
                     result.timing.prediction_search = toc(SEARCH_STEP);
 
