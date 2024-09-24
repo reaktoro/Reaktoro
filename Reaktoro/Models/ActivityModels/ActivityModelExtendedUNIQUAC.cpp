@@ -146,6 +146,10 @@ auto createActivityModelExtendedUNIQUAC(SpeciesList const& species, ActivityMode
     ArrayXr xr;
     ArrayXr xq;
 
+    // Shared pointers used in `props.extra` to avoid heap memory allocation for big objects
+    auto aqstateptr = std::make_shared<AqueousMixtureState>();
+    auto aqsolutionptr = std::make_shared<AqueousMixture>(solution);
+
     ActivityModel fn = [=](ActivityPropsRef props, ActivityModelArgs args) mutable
     {
         // The arguments for the activity model evaluation
@@ -156,7 +160,7 @@ auto createActivityModelExtendedUNIQUAC(SpeciesList const& species, ActivityMode
         auto const RT = universalGasConstant*T;
 
         // Evaluate the state of the aqueous solution
-        auto const& aqstate = solution.state(T, P, x);
+        auto const& aqstate = *aqstateptr = solution.state(T, P, x);
 
         // The ionic strength of the solution and its square root
         auto const& I = aqstate.Ie;
@@ -168,6 +172,10 @@ auto createActivityModelExtendedUNIQUAC(SpeciesList const& species, ActivityMode
 
         // Set the state of matter of the phase (always liquid for the e-UNIQUAC model)
         props.som = StateOfMatter::Liquid;
+
+        // Export the aqueous solution and its state via the `extra` data member
+        props.extra["AqueousMixtureState"] = aqstateptr;
+        props.extra["AqueousMixture"] = aqsolutionptr;
 
         // The mole fraction of water and its natural log
         auto const xw = x[iw];
