@@ -102,11 +102,8 @@ auto activityModelDavies(const SpeciesList& species, ActivityModelDaviesParams p
         const auto sigmac = -A*(sqrtI/(1 + sqrtI) - bions*I) * ln10;
         const auto sigman = bneutrals*I * ln10;
 
-        // The common integral term Γᵢ for all charged species
-        const auto Gammac = -2*A*(I - 2*sqrtI + 2*log(1 + sqrtI) - 0.5*bions*I2) * ln10;
-
-        // Initialize ln activity of water to zero and collect contributions to it below from charged and neutral solutes
-        ln_a[iwater] = 0.0;
+        // Calculate the contribution of ions to the ln activity of water
+        ln_a[iwater] = ln10 * Mw * A * (2*(I + 2*sqrtI)/(1 + sqrtI) - 4*log(1 + sqrtI) - bions*I2) - (1 - xw)*xw;
 
         // Loop over all charged species in the aqueous mixture
         for(Index i = 0; i < num_charged_species; ++i)
@@ -122,9 +119,6 @@ auto activityModelDavies(const SpeciesList& species, ActivityModelDaviesParams p
 
             // Calculate the ln activity of the current charged species
             ln_a[ispecies] = ln_g[ispecies] + ln_m[ispecies];
-
-            // Calculate the contribution of current charged species to the ln activity of water
-            ln_a[iwater] -= Mw * (m[ispecies] + m[ispecies]*ln_g[ispecies] - Gammac);
         }
 
         // Loop over all neutral species in the aqueous mixture
@@ -143,7 +137,7 @@ auto activityModelDavies(const SpeciesList& species, ActivityModelDaviesParams p
             ln_a[ispecies] = ln_g[ispecies] + ln_m[ispecies];
 
             // Calculate the contribution of current neutral species to the ln activity of water
-            ln_a[iwater] -= Mw * (m[ispecies] + m[ispecies]*ln_g[ispecies] - Gammai);
+            ln_a[iwater] -= Mw * (m[ispecies]*ln_g[ispecies]);
         }
 
         // Set the activity coefficient of water (mole fraction scale)
