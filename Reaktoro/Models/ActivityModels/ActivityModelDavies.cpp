@@ -103,7 +103,7 @@ auto activityModelDavies(const SpeciesList& species, ActivityModelDaviesParams p
         const auto sigman = bneutrals*I * ln10;
 
         // Calculate the contribution of ions to the ln activity of water
-        ln_a[iwater] = ln10 * Mw * A * (2*(I + 2*sqrtI)/(1 + sqrtI) - 4*log(1 + sqrtI) - bions*I2) - (1 - xw)*xw;
+        ln_a[iwater] = ln10 * Mw * A * (2*(I + 2*sqrtI)/(1 + sqrtI) - 4*log(1 + sqrtI) - bions*I2) - (1 - xw)/xw;
 
         // Loop over all charged species in the aqueous mixture
         for(Index i = 0; i < num_charged_species; ++i)
