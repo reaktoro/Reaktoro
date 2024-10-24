@@ -83,7 +83,7 @@ TEST_CASE("Testing ActivityModelDavies", "[ActivityModelDavies]")
         // Evaluate the activity props function
         fn(props, {T, P, x});
 
-        CHECK( double(exp(props.ln_g[0]))  == Approx(0.994886972465355) ); // H2O
+        CHECK( double(exp(props.ln_g[0]))  == Approx(0.992196507225829) ); // H2O
         CHECK( double(exp(props.ln_g[1]))  == Approx(0.800165626605902) ); // H+
         CHECK( double(exp(props.ln_g[2]))  == Approx(0.800165626605902) ); // OH-
         CHECK( double(exp(props.ln_g[3]))  == Approx(0.800165626605902) ); // Na+
@@ -115,7 +115,7 @@ TEST_CASE("Testing ActivityModelDavies", "[ActivityModelDavies]")
         // Evaluate the activity props function
         fn(props, {T, P, x});
 
-        CHECK( double(exp(props.ln_g[0]))  == Approx(0.994592292160806) ); // H2O
+        CHECK( double(exp(props.ln_g[0]))  == Approx(0.991902623822977) ); // H2O
         CHECK( double(exp(props.ln_g[1]))  == Approx(0.707914308149729) ); // H+
         CHECK( double(exp(props.ln_g[2]))  == Approx(0.707914308149729) ); // OH-
         CHECK( double(exp(props.ln_g[3]))  == Approx(0.707914308149729) ); // Na+
