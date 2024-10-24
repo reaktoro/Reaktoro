@@ -15,11 +15,56 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this library. If not, see <http://www.gnu.org/licenses/>.
 
-
-from reaktoro import *
+import numpy as np
 import pytest
 
+from reaktoro import *
 
-# TODO Implement tests for the python bindings of component AqueousMixture in AqueousMixture[test].py
+
+def rhofn(T, P):
+    wtp = waterThermoPropsWagnerPrussMemoized(T, P, StateOfMatter.Liquid)
+    return wtp.D
+
+
+def epsilonfn(T, P):
+    wtp = waterThermoPropsWagnerPrussMemoized(T, P, StateOfMatter.Liquid)
+    wep = waterElectroPropsJohnsonNorton(T, P, wtp)
+    return wep.epsilon
+
+
 def testAqueousMixture():
-    pass
+    species = SpeciesList(
+        "H2O H+ OH- Na+ Cl- Ca++ Mg++ HCO3- CO3-- K+ CO2 HCl NaCl NaOH CaCl2 MgCl2 CaCO3 MgCO3"
+    )
+
+    T = autodiff.real(345.67)
+    P = autodiff.real(123.4e5)
+
+    n = np.random.rand(species.size())
+    n[0] = 55.508
+
+    x = n / n.sum()
+
+    mixture = AqueousMixture(species)
+    state = mixture.state(T, P, x)
+
+    assert state.rho == pytest.approx(997.0470390177028)
+    assert state.epsilon == pytest.approx(78.2451448082024)
+
+    AqueousMixture.setDefaultWaterDensityFn(rhofn)
+    AqueousMixture.setDefaultWaterDielectricConstantFn(epsilonfn)
+
+    mixture = AqueousMixture(species)
+    state = mixture.state(T, P, x)
+
+    assert state.rho == pytest.approx(981.650989015948)
+    assert state.epsilon == pytest.approx(63.37949243846789)
+
+    AqueousMixture.resetDefaultWaterDensityFn()
+    AqueousMixture.resetDefaultWaterDielectricConstantFn()
+
+    mixture = AqueousMixture(species)
+    state = mixture.state(T, P, x)
+
+    assert state.rho == pytest.approx(997.0470390177028)
+    assert state.epsilon == pytest.approx(78.2451448082024)

@@ -19,6 +19,7 @@
 #include <Reaktoro/pybind11.hxx>
 
 // Reaktoro includes
+#include <Reaktoro/Common/Matrix.hpp>
 #include <Reaktoro/Models/ActivityModels/Support/AqueousMixture.hpp>
 using namespace Reaktoro;
 
@@ -55,6 +56,12 @@ void exportAqueousMixture(py::module& m)
         .def("indexWater", &AqueousMixture::indexWater, "Return the index of the solvent species in the mixture.")
         .def("charges", &AqueousMixture::charges, "Return the electric charges of the aqueous species in the mixture.")
         .def("dissociationMatrix", &AqueousMixture::dissociationMatrix, "Return the dissociation matrix of the neutral species into charged species.")
+        .def("state", [](AqueousMixture& self, real T, real P, ArrayXrConstRef x) { return self.state(T, P, x); }, "Calculate the state of the aqueous mixture.")
+        .def("state", [](AqueousMixture& self, real T, real P, py::array_t<double> const& x) { return self.state(T, P, ArrayXr(ArrayXd::Map(x.data(), x.size()))); }, "Calculate the state of the aqueous mixture.")
         .def("state", &AqueousMixture::state, "Calculate the state of the aqueous mixture.")
+        .def_static("setDefaultWaterDensityFn", AqueousMixture::setDefaultWaterDensityFn, "Set the default function for water density calculation when creating AqueousMixture objects.")
+        .def_static("setDefaultWaterDielectricConstantFn", AqueousMixture::setDefaultWaterDielectricConstantFn, "Set the default function for water dielectric constant calculation when creating AqueousMixture objects.")
+        .def_static("resetDefaultWaterDensityFn", [](){ AqueousMixture::resetDefaultWaterDensityFn(); }, "Reset the default function for water density calculation when creating AqueousMixture objects.")
+        .def_static("resetDefaultWaterDielectricConstantFn", [](){ AqueousMixture::resetDefaultWaterDielectricConstantFn(); }, "Reset the default function for water dielectric constant calculation when creating AqueousMixture objects.")
         ;
 }

@@ -44,6 +44,9 @@ auto defaultWaterDielectricConstantFn() -> Fn<real(real,real)>
     return [=](real T, real P) { return epsilon0; };
 }
 
+auto default_water_density_fn = defaultWaterDensityFn();
+auto default_water_dielectric_constant_fn = defaultWaterDielectricConstantFn();
+
 } // namespace detail
 
 struct AqueousMixture::Impl
@@ -111,10 +114,10 @@ struct AqueousMixture::Impl
         initializeDissociationMatrix();
 
         // Initialize the density function for water
-        rho = detail::defaultWaterDensityFn();
+        rho = detail::default_water_density_fn;
 
         // Initialize the dielectric constant function for water
-        epsilon = detail::defaultWaterDielectricConstantFn();
+        epsilon = detail::default_water_dielectric_constant_fn;
     }
 
     /// Initialize the index related data of the species.
@@ -337,6 +340,26 @@ auto AqueousMixture::charges() const -> ArrayXdConstRef
 auto AqueousMixture::state(real T, real P, ArrayXrConstRef x) const -> AqueousMixtureState
 {
     return pimpl->state(T, P, x);
+}
+
+auto AqueousMixture::setDefaultWaterDensityFn(Fn<real(real,real)> rho) -> void
+{
+    detail::default_water_density_fn = std::move(rho);
+}
+
+auto AqueousMixture::setDefaultWaterDielectricConstantFn(Fn<real(real,real)> epsilon) -> void
+{
+    detail::default_water_dielectric_constant_fn = std::move(epsilon);
+}
+
+auto AqueousMixture::resetDefaultWaterDensityFn() -> void
+{
+    detail::default_water_density_fn = detail::defaultWaterDensityFn();
+}
+
+auto AqueousMixture::resetDefaultWaterDielectricConstantFn() -> void
+{
+    detail::default_water_dielectric_constant_fn = detail::defaultWaterDielectricConstantFn();
 }
 
 } // namespace Reaktoro

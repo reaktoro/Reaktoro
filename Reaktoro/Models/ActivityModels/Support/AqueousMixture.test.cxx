@@ -19,9 +19,13 @@
 #include <catch2/catch.hpp>
 
 // Reaktoro includes
-#include <Reaktoro/Singletons/DissociationReactions.hpp>
 #include <Reaktoro/Models/ActivityModels/Support/AqueousMixture.hpp>
+#include <Reaktoro/Singletons/DissociationReactions.hpp>
 #include <Reaktoro/Water/WaterConstants.hpp>
+#include <Reaktoro/Water/WaterElectroProps.hpp>
+#include <Reaktoro/Water/WaterElectroPropsJohnsonNorton.hpp>
+#include <Reaktoro/Water/WaterThermoProps.hpp>
+#include <Reaktoro/Water/WaterThermoPropsUtils.hpp>
 using namespace Reaktoro;
 
 auto moleFractions(Index size) -> ArrayXr
@@ -41,42 +45,42 @@ TEST_CASE("Testing AqueousMixture class", "[AqueousMixture]")
 
         AqueousMixture mixture(species);
 
-        REQUIRE( mixture.species().size() == species.size() );
+        CHECK( mixture.species().size() == species.size() );
 
         // Test H2O is not classified as neutral solute species
-        REQUIRE_THROWS( mixture.neutral().index("H2O") );
+        CHECK_THROWS( mixture.neutral().index("H2O") );
 
         for(auto x : species)
         {
             if(x.name() == "H2O") continue;
 
             // Test AqueousMixture::neutral|charged|cations|anions methods
-            if(x.charge() == 0.0) REQUIRE_NOTHROW( mixture.neutral().index(x.name()) );
-            if(x.charge() != 0.0) REQUIRE_NOTHROW( mixture.charged().index(x.name()) );
-            if(x.charge()  > 0.0) REQUIRE_NOTHROW( mixture.cations().index(x.name()) );
-            if(x.charge()  < 0.0) REQUIRE_NOTHROW( mixture.anions().index(x.name()) );
+            if(x.charge() == 0.0) CHECK_NOTHROW( mixture.neutral().index(x.name()) );
+            if(x.charge() != 0.0) CHECK_NOTHROW( mixture.charged().index(x.name()) );
+            if(x.charge()  > 0.0) CHECK_NOTHROW( mixture.cations().index(x.name()) );
+            if(x.charge()  < 0.0) CHECK_NOTHROW( mixture.anions().index(x.name()) );
 
             // Test AqueousMixture::indicesXYZ methods
-            if(x.charge() == 0.0) REQUIRE( contains(mixture.indicesNeutral(), species.index(x.name())) );
-            if(x.charge() != 0.0) REQUIRE( contains(mixture.indicesCharged(), species.index(x.name())) );
-            if(x.charge()  > 0.0) REQUIRE( contains(mixture.indicesCations(), species.index(x.name())) );
-            if(x.charge()  < 0.0) REQUIRE( contains(mixture.indicesAnions(), species.index(x.name())) );
+            if(x.charge() == 0.0) CHECK( contains(mixture.indicesNeutral(), species.index(x.name())) );
+            if(x.charge() != 0.0) CHECK( contains(mixture.indicesCharged(), species.index(x.name())) );
+            if(x.charge()  > 0.0) CHECK( contains(mixture.indicesCations(), species.index(x.name())) );
+            if(x.charge()  < 0.0) CHECK( contains(mixture.indicesAnions(), species.index(x.name())) );
         }
 
         // Test AqueousMixture::water method
-        REQUIRE( mixture.water().formula().equivalent("H2O") );
+        CHECK( mixture.water().formula().equivalent("H2O") );
 
         // Test AqueousMixture::indexWater method
-        REQUIRE( mixture.indexWater() == species.index("H2O") );
+        CHECK( mixture.indexWater() == species.index("H2O") );
 
         // Test AqueousMixture::charges method
-        REQUIRE( mixture.charges().size() == species.size() );
+        CHECK( mixture.charges().size() == species.size() );
         for(auto i = 0; i < species.size(); ++i)
-            REQUIRE( mixture.charges()[i] == species[i].charge() );
+            CHECK( mixture.charges()[i] == species[i].charge() );
 
         // Test AqueousMixture::dissociationMatrix method
-        REQUIRE( mixture.dissociationMatrix().rows() == mixture.neutral().size() );
-        REQUIRE( mixture.dissociationMatrix().cols() == mixture.charged().size() );
+        CHECK( mixture.dissociationMatrix().rows() == mixture.neutral().size() );
+        CHECK( mixture.dissociationMatrix().cols() == mixture.charged().size() );
 
         // Assemble the expected dissociation matrix for the constructed aqueous mixture
         const MatrixXd M
@@ -92,7 +96,7 @@ TEST_CASE("Testing AqueousMixture class", "[AqueousMixture]")
         };
 
         INFO( "dissociation matrix is\n" << mixture.dissociationMatrix() << "\nbut expected is\n" << M );
-        REQUIRE( mixture.dissociationMatrix().isApprox(M) );
+        CHECK( mixture.dissociationMatrix().isApprox(M) );
 
         // The temperature (in K), pressure (in Pa) and mole fractions of the aqueous species
         const auto T = 345.67;
@@ -112,14 +116,51 @@ TEST_CASE("Testing AqueousMixture class", "[AqueousMixture]")
         const auto Ie = 0.5 * (m * z * z).sum();                      // the effective ionic strength of the solution
         const auto Is = 0.5 * (ms * zc * zc).sum();                   // the stoichiometric ionic strength of the solution
 
-        REQUIRE( state.T       == T                      );
-        REQUIRE( state.P       == P                      );
-        REQUIRE( state.Ie      == Approx(Ie)             );
-        REQUIRE( state.Is      == Approx(Is)             );
-        REQUIRE( state.rho     == Approx(997.0470390177) );
-        REQUIRE( state.epsilon == Approx(78.2451448082)  );
+        CHECK( state.T       == T                      );
+        CHECK( state.P       == P                      );
+        CHECK( state.Ie      == Approx(Ie)             );
+        CHECK( state.Is      == Approx(Is)             );
+        CHECK( state.rho     == Approx(997.0470390177028) );
+        CHECK( state.epsilon == Approx(78.2451448082024)  );
 
-        REQUIRE( state.m.isApprox(m)   );
-        REQUIRE( state.ms.isApprox(ms) );
+        CHECK( state.m.isApprox(m)   );
+        CHECK( state.ms.isApprox(ms) );
+
+        WHEN("When default density and dielectric constant functions are changed")
+        {
+            SpeciesList species("H2O H+ OH- Na+ Cl- Ca++ Mg++ HCO3- CO3-- K+ CO2 HCl NaCl NaOH CaCl2 MgCl2 CaCO3 MgCO3");
+
+            AqueousMixture::setDefaultWaterDensityFn([](real T, real P)
+            {
+                auto const wtp = waterThermoPropsWagnerPrussMemoized(T, P, StateOfMatter::Liquid);
+                return wtp.D;
+            });
+
+            AqueousMixture::setDefaultWaterDielectricConstantFn([](real T, real P)
+            {
+                auto const wtp = waterThermoPropsWagnerPrussMemoized(T, P, StateOfMatter::Liquid);
+                auto const wep = waterElectroPropsJohnsonNorton(T, P, wtp);
+                return wep.epsilon;
+            });
+
+            AqueousMixture mixture(species);
+
+            auto state = mixture.state(T, P, x);
+
+            CHECK( state.rho     == Approx(981.650989015948) );
+            CHECK( state.epsilon == Approx(63.37949243846789) );
+
+            // Reset the default density and dielectric constant functions
+            AqueousMixture::resetDefaultWaterDensityFn();
+            AqueousMixture::resetDefaultWaterDielectricConstantFn();
+
+            // Create a new AqueousMixture object
+            mixture = AqueousMixture(species);
+
+            state = mixture.state(T, P, x);
+
+            CHECK( state.rho     == Approx(997.0470390177028) );
+            CHECK( state.epsilon == Approx(78.2451448082024)  );
+        }
     }
 }

@@ -133,6 +133,22 @@ public:
     /// @param x The mole fractions of the species in the mixture
     auto state(real T, real P, ArrayXrConstRef x) const -> AqueousMixtureState;
 
+    /// Set the default function for water density calculation when creating AqueousMixture objects.
+    static auto setDefaultWaterDensityFn(Fn<real(real,real)> rho) -> void;
+
+    /// Set the default function for water dielectric constant calculation when creating AqueousMixture objects.
+    static auto setDefaultWaterDielectricConstantFn(Fn<real(real,real)> epsilon) -> void;
+
+    /// Reset the default function for water density calculation when creating AqueousMixture objects.
+    /// The default function is the one that returns the density of water at 25°C and 1 atm:
+    /// ρ = 997.04703901770279 kg/m3 (via Wagner-Pruss equation)
+    static auto resetDefaultWaterDensityFn() -> void;
+
+    /// Reset the default function for water dielectric constant calculation when creating AqueousMixture objects.
+    /// The default function is the one that returns the density of water at 25°C and 1 atm:
+    /// ϵ = 78.245144808202397 (via Jonhson-Norton equation)
+    static auto resetDefaultWaterDielectricConstantFn() -> void;
+
 private:
     struct Impl;
 
