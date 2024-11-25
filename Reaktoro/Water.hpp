@@ -17,15 +17,16 @@
 
 #pragma once
 
-#include <Reaktoro/Water/WaterThermoProps.hpp>
-#include <Reaktoro/Water/WaterElectroProps.hpp>
 #include <Reaktoro/Water/WaterConstants.hpp>
-#include <Reaktoro/Water/WaterUtils.hpp>
-#include <Reaktoro/Water/WaterThermoPropsUtils.hpp>
-#include <Reaktoro/Water/WaterHelmholtzPropsWagnerPruss.hpp>
+#include <Reaktoro/Water/WaterElectroProps.hpp>
 #include <Reaktoro/Water/WaterElectroPropsJohnsonNorton.hpp>
-#include <Reaktoro/Water/WaterHelmholtzPropsHGK.hpp>
 #include <Reaktoro/Water/WaterHelmholtzProps.hpp>
+#include <Reaktoro/Water/WaterHelmholtzPropsHGK.hpp>
+#include <Reaktoro/Water/WaterHelmholtzPropsWagnerPruss.hpp>
+#include <Reaktoro/Water/WaterInterpolation.hpp>
+#include <Reaktoro/Water/WaterThermoProps.hpp>
+#include <Reaktoro/Water/WaterThermoPropsUtils.hpp>
+#include <Reaktoro/Water/WaterUtils.hpp>
 
 /// @defgroup Water Water
 /// The module in Reaktoro in which thermodynamic and electrostatic models for water are implemented.
