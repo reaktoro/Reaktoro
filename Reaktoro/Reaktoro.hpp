@@ -22,12 +22,13 @@
 #include <Reaktoro/Equilibrium.hpp>
 #include <Reaktoro/Extensions.hpp>
 #include <Reaktoro/Kinetics.hpp>
-#include <Reaktoro/Kinetics.hpp>
 #include <Reaktoro/Math.hpp>
 #include <Reaktoro/Models.hpp>
+#include <Reaktoro/Serialization.hpp>
 #include <Reaktoro/Singletons.hpp>
 #include <Reaktoro/Transport.hpp>
 #include <Reaktoro/Utils.hpp>
+#include <Reaktoro/Water.hpp>
 
 /// The namespace containing all components of the Reaktoro library.
 namespace Reaktoro {
